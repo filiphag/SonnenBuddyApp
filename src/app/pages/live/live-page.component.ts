@@ -25,12 +25,14 @@ export class LivePage {
   solarToInverter$ = this.store.select(StatusSelectors.selectSolarToInverter);
 
   batteryCharge$ = this.store.select(StatusSelectors.selectBatteryChargePercent);
+  batteryRealCharge$ = this.store.select(StatusSelectors.selectBatteryChargeRealPercent);
   batteryCharging$ = this.store.select(StatusSelectors.selectBatteryCharging);
   batteryChargingTime$ = this.store.select(StatusSelectors.selectBatteryChargingTime);
   batteryDischarging$ = this.store.select(StatusSelectors.selectBatteryDischarging);
   batteryDischargingTime$ = this.store.select(StatusSelectors.selectBatteryDischargingTime);
   batteryUtilization$ = this.store.select(StatusSelectors.selectBatteryUtilization);
   batteryRemaining$ = this.store.select(StatusSelectors.selectBatteryRemaining);
+  batteryBackupBuffer$ = this.store.select(StatusSelectors.selectBackupBuffer);
   batteryUsage$ = this.store.select(StatusSelectors.selectBatteryUsage);
   batteryToInverter$ = this.store.select(StatusSelectors.selectBatteryToInverter);
 
