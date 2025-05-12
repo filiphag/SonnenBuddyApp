@@ -33,10 +33,10 @@ export class NetworkService extends BaseService {
     const devices: Device[] = [
       {
         // IP is irrelevant here as all /api calls are proxied regardless when developing
-        lanIp: '192.168.1.130',
+        lanIp: '192.168.1.185',
         ca20: true,
         info: 'sonnenBatterie',
-        serialNumber: 123456, // Hardcode your serial to be found here when you're developing
+        serialNumber: 260408, // Hardcode your serial to be found here when you're developing
       },
     ];
     return of(devices);
