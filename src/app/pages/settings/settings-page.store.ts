@@ -4,6 +4,7 @@ import { ComponentStore } from '@ngrx/component-store';
 import { Store } from '@ngrx/store';
 import { SonnenBatterieSelectors } from 'src/app/store/sonnen-batterie';
 import { InputSelectors } from 'src/app/store/input';
+import { StatusSelectors } from 'src/app/store/status';
 
 export interface ISettingsState {
   operatingMode: OperatingMode;
@@ -34,6 +35,8 @@ export class SettingsPageStore extends ComponentStore<ISettingsState> {
   readonly batteryCapacity$ = this.store.select(SonnenBatterieSelectors.selectSonnenBatterieBatteryCapacity);
   readonly batteryMaxPower$ = this.store.select(SonnenBatterieSelectors.selectSonnenBatterieBatteryMaxPower);
   readonly solarMaxPower$ = this.store.select(InputSelectors.selectSolarMaxPower);
+  readonly batteryBufferLevel$ = this.store.select(StatusSelectors.selectBackupBuffer);
+
 
   constructor(private readonly store: Store) {
     super({ ...initialState });

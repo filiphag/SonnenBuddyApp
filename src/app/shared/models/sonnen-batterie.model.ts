@@ -28,4 +28,8 @@ export interface DeviceConfiguration {
    * Charging schedules setup on the battery (from API but copy maintained in state)
    */
   schedules?: ISchedule[];
+  /**
+   * backup buffer level in percent (from API)
+   */
+  batteryBufferLevel?: number;
 }

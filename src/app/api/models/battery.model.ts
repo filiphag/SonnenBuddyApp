@@ -6,6 +6,7 @@ export enum ConfigurationKey {
   CM_MarketingModuleCapacity = 'CM_MarketingModuleCapacity',
   EM_OperatingMode = 'EM_OperatingMode',
   EM_ToU_Schedule = 'EM_ToU_Schedule',
+  EM_USOC = 'EM_USOC',
   /**
    * Not currently supported by the API unfortunately
    */
@@ -17,6 +18,7 @@ export enum OperatingMode {
   SelfConsumption = '2',
   BatteryModuleExtension = '6',
   TimeOfUse = '10',
+  SelfConsumptionOptimized = '11'
 }
 
 export interface ITimespan {
@@ -93,6 +95,9 @@ export interface IBatteryStatus {
    * Operating mode that is set on the system:
    * 1: Manual charging or discharging via API
    * 2: Automatic Self Consumption. Default
+   * 6: battery module extension
+   * 10: Time of Use
+   * 11: Automatic Self Consumption, Optimized!
    */
   OperatingMode: string;
   /**

@@ -9,6 +9,7 @@ import { Platform, ToggleChangeEventDetail } from '@ionic/angular';
 import { IpService } from '../../core/services/ip.service';
 import { MaxPowerService } from '../../core/services/max-power.service';
 import { ConfirmService } from '../../core/services/confirm.service';
+import { BatteryBufferService } from '../../core/services/battery-buffer.service';
 
 @Component({
   selector: 'app-settings',
@@ -34,7 +35,8 @@ export class SettingsPage implements OnInit {
     private readonly platform: Platform,
     private readonly confirmService: ConfirmService,
     private readonly ipService: IpService,
-    private readonly maxPowerService: MaxPowerService
+    private readonly maxPowerService: MaxPowerService,
+    private readonly bufferLevelService: BatteryBufferService
   ) {}
 
   ngOnInit() {
@@ -65,6 +67,19 @@ export class SettingsPage implements OnInit {
     this.maxPowerService.show(value, 'Solar max output').then((solarMaxPower) => {
       if (solarMaxPower && solarMaxPower.toString() !== value) {
         this.store.dispatch(InputActions.setSolarMaxPower({ solarMaxPower }));
+      }
+    });
+  }
+
+  changeBatteryBufferLevel(value: string) {
+    // Ensure `value` is explicitly passed as a string, even if it's "0"
+    const inputValue = value ?? ''; // Fallback to an empty string if `value` is null or undefined
+
+    this.bufferLevelService.show(inputValue, 'Battery buffer level').then((batteryBufferLevel) => {
+      if (batteryBufferLevel !== null && batteryBufferLevel.toString() !== value) {
+        this.store.dispatch(  
+          SonnenBatterieActions.setConfiguration({ key: ConfigurationKey.EM_USOC, configuration: batteryBufferLevel.toString() })
+        );
       }
     });
   }

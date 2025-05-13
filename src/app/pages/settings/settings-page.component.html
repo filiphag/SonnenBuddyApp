@@ -46,6 +46,16 @@
           <ion-button slot="end" (click)="changeSolarMaxOutput(solarMaxPower)">Change</ion-button>
         </ion-item>
 
+        <!--Battery buffer level-->
+        <ion-item lines="full" *ngrxLet="componentStore.batteryBufferLevel$ as batteryBufferLevel">
+          <ion-icon class="icon" color="dark" name="battery-half-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h3>{{ batteryBufferLevel }}%</h3>
+            <p>Battery buffer level</p>
+          </ion-label>
+          <ion-button slot="end" (click)="changeBatteryBufferLevel(batteryBufferLevel)">Change</ion-button>
+        </ion-item>
+
         <!--IP address-->
         <ion-item lines="none">
           <ion-icon class="icon" color="dark" name="git-network-outline" slot="start"></ion-icon>
@@ -60,6 +70,13 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+  <!--Debug code starting -->
+<!--   <ion-button (click)="changeBatteryBufferLevel(0)">Set 0 %</ion-button>
+  <ion-button (click)="changeBatteryBufferLevel(5)">Set 5 %</ion-button>
+  <ion-button (click)="changeBatteryBufferLevel(15)">Set 15 %</ion-button>
+  <ion-button (click)="changeBatteryBufferLevel(25)">Set 25 %</ion-button> -->
+  <!--Debug code ending -->
 
   <!--Extracted information-->
   <ion-card *ngrxLet="componentStore.device$ as device">
