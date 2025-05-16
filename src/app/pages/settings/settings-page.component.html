@@ -191,7 +191,7 @@
               <ng-container *ngSwitchCase="OperatingMode.Manual">
                 <p>Manual charging or discharging via API.</p>
                 <p>Manual charge/discharge can be reverted by setting mode to self consumption.</p>
-                <ng-container *ngTemplateOutlet="notSupported"></ng-container>
+                <ng-container *ngTemplateOutlet="noScheduleWarning"></ng-container>
               </ng-container>
               <ng-container *ngSwitchCase="OperatingMode.BatteryModuleExtension">
                 <ng-container *ngTemplateOutlet="notSupported"></ng-container>
@@ -213,7 +213,7 @@
             <div
               class="ion-flex ion-justify-content-end"
               *ngIf="
-                mode !== currentMode && mode !== OperatingMode.Manual && mode !== OperatingMode.BatteryModuleExtension
+                mode !== currentMode && mode !== OperatingMode.BatteryModuleExtension
               "
             >
               <ion-button (click)="setOperatingMode(mode)">Select</ion-button>
