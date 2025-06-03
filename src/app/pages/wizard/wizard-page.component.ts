@@ -42,12 +42,14 @@ export class WizardPage implements OnInit {
     });
   }
 
-  updateToken(e: CustomEvent<{ value: ApiToken }>) {
-    this.componentStore.setToken(e.detail.value.trim());
+  updateToken(e: Event) {
+    const customEvent = e as CustomEvent<{ value: string }>;
+    this.componentStore.setToken(customEvent.detail.value.trim());
   }
 
-  updateSolarPowerOutput(e: CustomEvent<{ value: string }>) {
-    const solarPowerOutput = parseInt(e.detail.value, 10);
+  updateSolarPowerOutput(e: Event) {
+    const customEvent = e as CustomEvent<{ value: string }>;
+    const solarPowerOutput = parseInt(customEvent.detail.value, 10);
 
     if (!isNaN(solarPowerOutput)) {
       this.componentStore.setSolarPowerOutput(solarPowerOutput);

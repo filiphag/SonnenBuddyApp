@@ -16,19 +16,19 @@
       <ion-col class="relative">
         <app-power-square
           class="flow solar-to-battery"
-          right="true"
-          bottom="true"
+          [right]="true"
+          [bottom]="true"
           [direction]="facade.vm.solarToBattery$ | ngrxPush"
         ></app-power-square>
         <app-power-square
           class="flow solar-to-inverter"
-          left="true"
-          bottom="true"
+          [left]="true"
+          [bottom]="true"
           [direction]="facade.vm.solarToInverter$ | ngrxPush"
         ></app-power-square>
         <app-power-square
           class="flow battery-and-inverter"
-          bottom="true"
+          [bottom]="true"
           [direction]="facade.vm.batteryAndInverter$ | ngrxPush"
         ></app-power-square>
       </ion-col>
@@ -44,19 +44,19 @@
       <ion-col>
         <app-power-square
           class="flow inverter-and-grid"
-          left="true"
+          [left]="true"
           [direction]="facade.vm.inverterAndGrid$ | ngrxPush"
         ></app-power-square>
         <app-power-square
           class="flow inverter-to-home"
-          right="true"
-          bottom="true"
+          [right]="true"
+          [bottom]="true"
           [direction]="facade.vm.inverterToHome$ | ngrxPush"
         ></app-power-square>
         <app-power-square
           class="flow grid-to-home"
-          top="true"
-          right="true"
+          [top]="true"
+          [right]="true"
           [direction]="facade.vm.gridToHome$ | ngrxPush"
         ></app-power-square>
       </ion-col>

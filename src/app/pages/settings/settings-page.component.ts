@@ -92,15 +92,19 @@ export class SettingsPage implements OnInit {
     });
   }
 
-  setDarkMode(e: CustomEvent<ToggleChangeEventDetail>) {
-    this.store.dispatch(InputActions.setDarkMode({ enabled: e.detail.checked }));
+  setDarkMode(e: Event) {
+  const customEvent = e as CustomEvent<ToggleChangeEventDetail>;
+  this.store.dispatch(
+    InputActions.setDarkMode({ enabled: customEvent.detail.checked })
+  );
   }
 
-  setPrognosisCharging(e: CustomEvent<ToggleChangeEventDetail>) {
+  setPrognosisCharging(e: Event) {
+    const customEvent = e as CustomEvent<ToggleChangeEventDetail>;
     this.store.dispatch(
       SonnenBatterieActions.setConfiguration({
         key: ConfigurationKey.EM_Prognosis_Charging,
-        configuration: e.detail.checked ? '1' : '0',
+        configuration: customEvent.detail.checked ? '1' : '0',
       })
     );
   }

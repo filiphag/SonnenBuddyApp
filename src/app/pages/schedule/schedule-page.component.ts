@@ -35,8 +35,9 @@ export class SchedulePage implements OnInit {
     this.componentStore.updateTimespan({ start, stop });
   }
 
-  thresholdChange(e: CustomEvent) {
-    this.threshold = e.detail.value;
+  thresholdChange(e: Event) {
+    const customEvent = e as CustomEvent;
+    this.threshold = customEvent.detail.value;
     this.componentStore.updateThreshold(parseInt(this.threshold, 10));
   }
 

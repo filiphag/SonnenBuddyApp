@@ -25,17 +25,20 @@ export class TimespanComponent implements OnChanges {
     this.initialValue = this.componentStore.getInitialValue();
   }
 
-  onChange(e: RangeCustomEvent) {
-    this.componentStore.move(e.detail.value as RangeValue);
+  onChange(e: Event) {
+    const customEvent = e as RangeCustomEvent;
+    this.componentStore.move(customEvent.detail.value as RangeValue);
     this.timespanChange.emit(this.componentStore.getTimespanChangeEvent());
   }
 
-  onKnobMoveStart(e: RangeCustomEvent) {
-    this.componentStore.startMove(e.detail.value as RangeValue);
+  onKnobMoveStart(e: Event) {
+    const customEvent = e as RangeCustomEvent;
+    this.componentStore.startMove(customEvent.detail.value as RangeValue);
   }
 
-  onKnobMoveEnd(e: RangeCustomEvent) {
-    this.componentStore.stopMove(e.detail.value as RangeValue);
+  onKnobMoveEnd(e: Event) {
+    const customEvent = e as RangeCustomEvent;
+    this.componentStore.stopMove(customEvent.detail.value as RangeValue);
   }
 
   pinFormatter = (value: number) => {
