@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Sonnen Buddy</string>
     <string name="title_activity_main">Sonnen Buddy</string>
-    <string name="package_name">dk.bytestack.sonnenbuddy</string>
-    <string name="custom_url_scheme">dk.bytestack.sonnenbuddy</string>
+    <string name="package_name">se.thehaglunds.sonnenbuddy</string>
+    <string name="custom_url_scheme">se.thehaglunds.sonnenbuddy</string>
 </resources>

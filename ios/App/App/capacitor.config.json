@@ -1,5 +1,5 @@
 {
-	"appId": "dk.bytestack.sonnenbuddy",
+	"appId": "se.thehaglunds.sonnenbuddy",
 	"appName": "Sonnen Buddy",
 	"webDir": "www",
 	"bundledWebRuntime": false,

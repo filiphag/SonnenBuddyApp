@@ -1,8 +1,8 @@
 {
   "name": "sonnen-buddy",
   "version": "0.0.1",
-  "author": "ByteStack",
-  "homepage": "https://bytestack.dk/",
+  "author": "TheHaglunds",
+  "homepage": "https://thehaglunds.se/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

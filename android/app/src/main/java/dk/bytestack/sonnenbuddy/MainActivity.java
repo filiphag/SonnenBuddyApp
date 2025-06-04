@@ -1,4 +1,4 @@
-package dk.bytestack.sonnenbuddy;
+package se.thehaglunds.sonnenbuddy;
 
 import com.getcapacitor.BridgeActivity;
 

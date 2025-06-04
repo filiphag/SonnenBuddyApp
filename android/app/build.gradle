@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    namespace 'se.thehaglunds.sonnenbuddy'
+  compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "dk.bytestack.sonnenbuddy"
+        applicationId "se.thehaglunds.sonnenbuddy"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 75
+        versionCode 77
         versionName "1.03b"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
