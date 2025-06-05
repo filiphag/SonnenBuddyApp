@@ -42,16 +42,14 @@ export const selectBatteryChargeRealPercent = createSelector(selectStatus, (enti
 export const selectBackupBuffer = createSelector(selectStatus, (entity) => {
   return entity?.BackupBuffer || '0';
 });
+
 export const selectBatteryRemaining = createSelector(
   selectStatus,
   SonnenBatterieSelectors.selectSonnenBatterieBatteryReservedCapacity,
   SonnenBatterieSelectors.selectSonnenBatterieBatteryCapacity,
   (entity, reservedCapacity, batteryCapacity) =>
     // Remaining capacity minus reserved capacity
-    // TODO: Is entity?.RemainingCapacity_Wh 0 or reserve when RSOC is 0%?
-    // entity?.RemainingCapacity_Wh - reservedCapacity || 0
-    entity?.USOC * batteryCapacity / 100 || 0
-    // batteryCapacity - reservedCapacity
+    entity?.USOC * (batteryCapacity-reservedCapacity) / 100 || 0
 );
 
 

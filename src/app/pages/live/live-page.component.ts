@@ -36,6 +36,12 @@ export class LivePage {
   batteryUsage$ = this.store.select(StatusSelectors.selectBatteryUsage);
   batteryToInverter$ = this.store.select(StatusSelectors.selectBatteryToInverter);
 
+  // SonnenBatterie debugging selectors
+  inverterMaxPower$ = this.store.select(SonnenBatterieSelectors.selectSonnenBatterieInverterMaxPower);
+  batteryCapacity$ = this.store.select(SonnenBatterieSelectors.selectSonnenBatterieBatteryCapacity);
+  // end of SonnenBatterie debugging selectors
+
+
   houseConsumption$ = this.store.select(StatusSelectors.selectHouseConsumption);
 
   inverterUsage$ = this.store.select(StatusSelectors.selectInverterCurrentPower);
@@ -58,6 +64,7 @@ export class LivePage {
   delayText$ = this.store.select(StatusSelectors.selectDelayed).pipe(map((delayed) => (delayed ? 'Delayed' : 'Okay')));
 
   device$ = this.store.select(SonnenBatterieSelectors.selectDevice);
+  
 
   constructor(private readonly store: Store, readonly facade: LivePageFacade) {}
 

@@ -132,6 +132,72 @@
             <td><ion-text color="medium">Battery empty:</ion-text></td>
             <td>{{ batteryDischargingTime$ | ngrxPush }}</td>
           </tr>
+
+          <!-- Debug prints of usable variables -->
+<!--           <tr>
+            <td><ion-text color="medium">batteryCharge:</ion-text></td>
+            <td>{{ batteryCharge$ | ngrxPush }}%</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">batteryRealCharge:</ion-text></td>
+            <td>{{ batteryRealCharge$ | ngrxPush | kw }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">batteryCharging:</ion-text></td>
+            <td>{{ batteryCharging$ | ngrxPush | kw }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">batteryChargingTime:</ion-text></td>
+            <td>{{ batteryChargingTime$ | ngrxPush }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">batteryDischarging:</ion-text></td>
+            <td>{{ batteryDischarging$ | ngrxPush | kw }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">batteryDischargingTime:</ion-text></td>
+            <td>{{ batteryDischargingTime$ | ngrxPush }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">batteryUtilization:</ion-text></td>
+            <td>{{ batteryUtilization$ | ngrxPush | kw }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">batteryRemaining:</ion-text></td>
+            <td>{{ batteryRemaining$ | ngrxPush | kw }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">batteryBackupBuffer:</ion-text></td>
+            <td>{{ batteryBackupBuffer$ | ngrxPush }}%</td>
+          </tr>          
+
+          <tr>
+            <td><ion-text color="medium">batteryUsage:</ion-text></td>
+            <td>{{ batteryUsage$ | ngrxPush | kw }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">inverterMaxPower:</ion-text></td>
+            <td>{{ inverterMaxPower$ | ngrxPush | kw }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">batteryCapacity:</ion-text></td>
+            <td>{{ batteryCapacity$ | ngrxPush | kw }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">Usable charge:</ion-text></td>
+            <td>{{ batteryRemaining$ | ngrxPush | kw }}h</td>
+          </tr> -->
+
+<!--           <tr>
+            <td><ion-text color="medium">device:</ion-text></td>
+            <td>{{ device$ | ngrxPush | json }}</td>
+          </tr>          
+          <tr>
+            <td><ion-text color="medium">updated:</ion-text></td>
+            <td>{{ updated$ | ngrxPush | json }}</td>
+          </tr>  -->
+          <!-- End of Debug prints of usable variables -->
+
         </table>
       </ion-col>
       <ion-col class="ion-flex ion-flex-column ion-align-items-center gap-1">
