@@ -21,6 +21,7 @@ export class SettingsPage implements OnInit {
   operatingModes = [
     OperatingMode.TimeOfUse,
     OperatingMode.SelfConsumption,
+    OperatingMode.SelfConsumptionOptimized,
     OperatingMode.BatteryModuleExtension,
     OperatingMode.Manual,
   ];

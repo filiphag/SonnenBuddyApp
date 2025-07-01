@@ -11,6 +11,8 @@ export class OmPipe implements PipeTransform {
         return 'Manual';
       case OperatingMode.SelfConsumption:
         return 'Self-Consumption';
+      case OperatingMode.SelfConsumptionOptimized:
+        return 'Self-Consumption-Optimized';
       case OperatingMode.BatteryModuleExtension:
         return 'Battery-Module-Extension';
       case OperatingMode.TimeOfUse:
