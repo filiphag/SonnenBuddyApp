@@ -52,6 +52,19 @@ export const selectBatteryRemaining = createSelector(
     entity?.USOC * (batteryCapacity-reservedCapacity) / 100 || 0
 );
 
+export const selectRemainingUntilBackupBuffer = createSelector(
+  selectStatus,
+  SonnenBatterieSelectors.selectSonnenBatterieBatteryReservedCapacity,
+  SonnenBatterieSelectors.selectSonnenBatterieBatteryCapacity,
+  selectBatteryRemaining,
+  (entity, reservedCapacity, batteryCapacity, batteryRemaining) => {
+    // Remaining capacity minus reserved capacity minus backup buffer
+    const usableCapacity = batteryCapacity - reservedCapacity;
+    const backupBufferLevel =  Number(entity?.BackupBuffer ?? '0');
+    const backupBufferCapacity = (backupBufferLevel * usableCapacity) / 100 ;
+    return (batteryRemaining - backupBufferCapacity) || 0;
+  }
+);
 
 export const selectBatteryChargingTime = createSelector(
   selectBatteryCharging,

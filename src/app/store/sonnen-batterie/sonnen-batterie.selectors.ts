@@ -60,7 +60,9 @@ export const selectSonnenBatterieBatteryMaxPower = createSelector(
     if (batteryQuantity === 1) {
       return 1100;
     } else if (batteryQuantity === 2) {
-      return 2500;
+      return 7000;
+    } else if (batteryQuantity >= 4) {
+      return 9900;
     }
     return 3300;
   }

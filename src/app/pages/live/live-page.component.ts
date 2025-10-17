@@ -33,6 +33,7 @@ export class LivePage {
   batteryUtilization$ = this.store.select(StatusSelectors.selectBatteryUtilization);
   batteryRemaining$ = this.store.select(StatusSelectors.selectBatteryRemaining);
   batteryBackupBuffer$ = this.store.select(StatusSelectors.selectBackupBuffer);
+  batteryRemainingUntilBackupBuffer$ = this.store.select(StatusSelectors.selectRemainingUntilBackupBuffer);
   batteryUsage$ = this.store.select(StatusSelectors.selectBatteryUsage);
   batteryToInverter$ = this.store.select(StatusSelectors.selectBatteryToInverter);
 
