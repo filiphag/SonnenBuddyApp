@@ -35,6 +35,7 @@ export class SettingsPageStore extends ComponentStore<ISettingsState> {
   readonly batteryCapacity$ = this.store.select(SonnenBatterieSelectors.selectSonnenBatterieBatteryCapacity);
   readonly batteryMaxPower$ = this.store.select(SonnenBatterieSelectors.selectSonnenBatterieBatteryMaxPower);
   readonly solarMaxPower$ = this.store.select(InputSelectors.selectSolarMaxPower);
+  readonly gridMaxPower$ = this.store.select(InputSelectors.selectGridMaxPower);
   readonly batteryBufferLevel$ = this.store.select(StatusSelectors.selectBackupBuffer);
 
 

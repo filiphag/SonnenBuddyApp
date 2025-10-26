@@ -46,6 +46,16 @@
           <ion-button slot="end" (click)="changeSolarMaxOutput(solarMaxPower.toString())">Change</ion-button>
         </ion-item>
 
+        <!--Grid max power-->
+        <ion-item lines="full" *ngrxLet="componentStore.gridMaxPower$ as gridMaxPower">
+          <ion-icon class="icon" color="dark" name="flash-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h3>{{ gridMaxPower | ngrxPush | kw }}</h3>
+            <p>Grid max power</p>
+          </ion-label>
+          <ion-button slot="end" (click)="changeGridMaxInput(gridMaxPower?.toString())">Change</ion-button>
+        </ion-item>
+
         <!--Battery buffer level-->
         <ion-item lines="full" *ngrxLet="componentStore.batteryBufferLevel$ as batteryBufferLevel">
           <ion-icon class="icon" color="dark" name="battery-half-outline" slot="start"></ion-icon>

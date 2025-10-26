@@ -72,6 +72,14 @@ export class SettingsPage implements OnInit {
     });
   }
 
+  changeGridMaxInput(value: string) {
+    this.maxPowerService.show(value, 'Grid max input').then((gridMaxPower) => {
+      if (gridMaxPower && gridMaxPower.toString() !== value) {
+        this.store.dispatch(InputActions.setGridMaxPower({ gridMaxPower }));
+      }
+    });
+  }
+
   changeBatteryBufferLevel(value: string) {
     // Ensure `value` is explicitly passed as a string, even if it's "0"
     const inputValue = value ?? ''; // Fallback to an empty string if `value` is null or undefined

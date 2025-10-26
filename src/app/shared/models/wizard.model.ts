@@ -18,4 +18,8 @@ export interface WizardOutput {
    * Max power output of solar installation in Watts
    */
   solarMaxPower?: number;
+    /**
+   * Max power input from grid in Watts
+   */
+  gridMaxPower?: number;
 }

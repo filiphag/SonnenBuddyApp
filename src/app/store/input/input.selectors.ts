@@ -5,3 +5,4 @@ export const { selectInputState, selectDarkMode, selectApiToken } = inputFeature
 
 export const selectBatteryMaxPower = createSelector(selectInputState, (state) => state.batteryMaxPower);
 export const selectSolarMaxPower = createSelector(selectInputState, (state) => state.solarMaxPower);
+export const selectGridMaxPower = createSelector(selectInputState, (state) => state.gridMaxPower);

@@ -13,6 +13,7 @@ export interface InputState {
    */
   batteryMaxPower: number;
   solarMaxPower: number;
+  gridMaxPower: number;
   darkMode: boolean;
 }
 
@@ -20,6 +21,7 @@ export const initialState: InputState = {
   apiToken: null,
   batteryMaxPower: null,
   solarMaxPower: null,
+  gridMaxPower: null,
   darkMode: false,
 };
 
@@ -41,6 +43,10 @@ export const inputFeature = createFeature({
     on(InputActions.setSolarMaxPower, (state, { solarMaxPower }) => ({
       ...state,
       solarMaxPower,
+    })),
+    on(InputActions.setGridMaxPower, (state, { gridMaxPower }) => ({
+      ...state,
+      gridMaxPower,
     })),
     on(InputActions.setBatteryMaxPower, (state, { batteryMaxPower }) => ({
       ...state,

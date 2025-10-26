@@ -3,6 +3,7 @@ import { ComponentStore } from '@ngrx/component-store';
 import { ISchedule, ITimespan, OperatingMode } from '../../api/models/battery.model';
 import { Store } from '@ngrx/store';
 import { SonnenBatterieActions, SonnenBatterieSelectors } from './../../store/sonnen-batterie';
+import { InputSelectors } from 'src/app/store/input';
 import { timeToNumber } from '../../shared/functions/timespan';
 import { map } from 'rxjs/operators';
 
@@ -30,6 +31,7 @@ const between = (x: number, min: number, max: number) => {
 export class SchedulePageStore extends ComponentStore<IScheduleState> {
   // From global store
   readonly operatingMode$ = this.store.select(SonnenBatterieSelectors.selectSonnenBatterieOperatingMode);
+  readonly gridMaxPower$ = this.store.select(InputSelectors.selectGridMaxPower);
   readonly schedules$ = this.store
     .select(SonnenBatterieSelectors.selectSonnenBatterieSchedules)
     .pipe(map((schedules) => [...schedules].sort((a, b) => a.start.localeCompare(b.start))));

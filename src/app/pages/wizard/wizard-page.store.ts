@@ -20,6 +20,7 @@ export interface IWizardState {
   device: Device;
   apiToken: ApiToken;
   solarMaxPower: number;
+  gridMaxPower: number;
   maxPower: number;
   batteryQuantity: number;
   batteryModuleCapacity: number;
@@ -36,6 +37,7 @@ export const initialState: IWizardState = {
   device: null,
   apiToken: null,
   solarMaxPower: null,
+  gridMaxPower: null,
   maxPower: null,
   batteryQuantity: null,
   batteryModuleCapacity: null,
@@ -76,6 +78,7 @@ export class WizardPageStore extends ComponentStore<IWizardState> {
   readonly batteryQuantity$ = this.select((state) => state.batteryQuantity);
   readonly batteryModuleCapacity$ = this.select((state) => state.batteryModuleCapacity);
   readonly solarMaxPower$ = this.select((state) => state.solarMaxPower);
+  readonly gridMaxPower$ = this.select((state) => state.gridMaxPower);
   readonly showFindHelp$ = this.select((state) => state.showFindHelp);
   readonly showSelectDevice$ = this.select((state) => state.showSelectDevice);
   readonly showTokenHelp$ = this.select((state) => state.showTokenHelp);
@@ -134,14 +137,19 @@ export class WizardPageStore extends ComponentStore<IWizardState> {
     this.patchState(() => ({ solarMaxPower }));
   }
 
+  setGridPowerInput(gridMaxPower: number) {
+    this.patchState(() => ({ gridMaxPower }));
+  }
+
   finish() {
-    const { device, solarMaxPower, apiToken, maxPower, batteryQuantity, batteryModuleCapacity } = this.get();
+    const { device, solarMaxPower, gridMaxPower, apiToken, maxPower, batteryQuantity, batteryModuleCapacity } = this.get();
     const output: WizardOutput = {
       apiToken,
       maxPower,
       batteryQuantity,
       batteryModuleCapacity,
       solarMaxPower,
+      gridMaxPower,
     };
 
     this.store.dispatch(WizardActions.finishWizard({ device, output }));

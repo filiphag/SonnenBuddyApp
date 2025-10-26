@@ -6,6 +6,7 @@ export const InputActions = createActionGroup({
     'Set Dark Mode': props<{ enabled: boolean }>(),
     'Set Battery Max Power': props<{ batteryMaxPower: number }>(),
     'Set Solar Max Power': props<{ solarMaxPower: number }>(),
+    'Set Grid Max Power': props<{ gridMaxPower: number }>(),
     'Clear Input': emptyProps(),
   },
 });
