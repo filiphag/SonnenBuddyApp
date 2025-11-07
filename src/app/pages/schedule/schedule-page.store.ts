@@ -4,7 +4,7 @@ import { ISchedule, ITimespan, OperatingMode } from '../../api/models/battery.mo
 import { Store } from '@ngrx/store';
 import { SonnenBatterieActions, SonnenBatterieSelectors } from './../../store/sonnen-batterie';
 import { InputSelectors } from 'src/app/store/input';
-import { timeToNumber } from '../../shared/functions/timespan';
+import { timeToNumber, numberToTime } from '../../shared/functions/timespan';
 import { map } from 'rxjs/operators';
 
 export interface IScheduleState {
@@ -27,6 +27,45 @@ const between = (x: number, min: number, max: number) => {
   return x > min && x < max;
 };
 
+const MINUTES_IN_DAY = 24 * 60;
+
+const findFirstFreeSlot = (schedules: ISchedule[]) => {
+  // console.log('findFirstFreeSlot - schedules:', schedules);
+  if (!schedules || schedules.length === 0) {
+    return { start: '00:00', stop: '24:00' };
+  }
+
+  const converted = [...schedules]
+    .map((s) => ({ startMin: timeToNumber(s.start), stopMin: timeToNumber(s.stop) }))
+    .sort((a, b) => a.startMin - b.startMin);
+
+  // console.log('findFirstFreeSlot - converted (minutes):', converted);
+
+  let prevEnd = 0;
+  for (const s of converted) {
+    // console.log('findFirstFreeSlot - checking gap: prevEnd=', prevEnd, 'sched=', s);
+    if (s.startMin > prevEnd) {
+      const result = { start: numberToTime(prevEnd), stop: numberToTime(s.startMin) };
+      // console.log('findFirstFreeSlot - found gap:', result);
+      return result;
+    }
+    // extend prevEnd if schedule runs past it
+    prevEnd = Math.max(prevEnd, s.stopMin);
+    // console.log('findFirstFreeSlot - extend prevEnd ->', prevEnd);
+  }
+
+  // gap from last schedule to end of day
+  if (prevEnd < MINUTES_IN_DAY / 15) { // compare in quarters
+    const result = { start: numberToTime(prevEnd), stop: numberToTime(MINUTES_IN_DAY / 15) };
+    // console.log('findFirstFreeSlot - gap to end of day:', result);
+    return result;
+  }
+
+  // no free slot, fallback to a small default
+  // console.log('findFirstFreeSlot - no free slot, fallback');
+  return { start: '00:00', stop: '01:00' };
+};
+
 @Injectable()
 export class SchedulePageStore extends ComponentStore<IScheduleState> {
   // From global store
@@ -35,6 +74,8 @@ export class SchedulePageStore extends ComponentStore<IScheduleState> {
   readonly schedules$ = this.store
     .select(SonnenBatterieSelectors.selectSonnenBatterieSchedules)
     .pipe(map((schedules) => [...schedules].sort((a, b) => a.start.localeCompare(b.start))));
+
+  readonly firstFreeSlot$ = this.select(this.schedules$, (schedules) => findFirstFreeSlot(schedules));
 
   // Local selectors
   readonly edit$ = this.select((state) => state.edit);
@@ -76,8 +117,18 @@ export class SchedulePageStore extends ComponentStore<IScheduleState> {
       (schedule && schedule.start === schedule.stop) ||
       (schedule && schedule.start === '24:00' && schedule.stop === '00:00')
   );
-  readonly scheduleStart$ = this.select(this.schedule$, (schedule) => schedule?.start || '01:00');
-  readonly scheduleStop$ = this.select(this.schedule$, (schedule) => schedule?.stop || '05:00');
+
+    readonly scheduleStart$ = this.select(
+    this.schedule$,
+    this.firstFreeSlot$,
+    (schedule, firstFree) => schedule?.start ?? firstFree?.start ?? '00:15'
+  );
+
+  readonly scheduleStop$ = this.select(
+    this.schedule$,
+    this.firstFreeSlot$,
+    (schedule, firstFree) => schedule?.stop ?? firstFree?.stop ?? '00:45'
+  );
   readonly scheduleThreshold$ = this.select(this.schedule$, (schedule) => schedule?.threshold_p_max || 0);
   readonly scheduleDisabled$ = this.select(
     this.operatingMode$,

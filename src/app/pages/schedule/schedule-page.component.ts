@@ -4,6 +4,7 @@ import { ISchedule, OperatingMode } from '../../api/models/battery.model';
 import { SonnenBatterieActions } from '../../store/sonnen-batterie';
 import { Store } from '@ngrx/store';
 import { TimespanChangeEvent } from '../../shared/components/timespan/timespan.component.store';
+import { take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-schedule',
@@ -42,18 +43,27 @@ export class SchedulePage implements OnInit {
   }
 
   showAddModal() {
-    // TODO: Don't start with something that's not valid
-    this.start = '01:00';
-    this.stop = '05:00';
-    this.threshold = '5000';
+    this.componentStore.firstFreeSlot$
+      .pipe(
+        take(1),
+        tap((firstFree) => {
+          // console.log('showAddModal - firstFreeSlot:', firstFree);
+        })
+      )
+      .subscribe((firstFree) => {
+      // Use firstFree slot if available, otherwise fall back to literals
+      this.start = firstFree?.start ?? '01:00';
+      this.stop = firstFree?.stop ?? '05:00';
+      this.threshold = '5000';
 
-    const schedule: ISchedule = {
-      start: this.start,
-      stop: this.stop,
-      threshold_p_max: parseInt(this.threshold, 10),
-    };
+      const schedule: ISchedule = {
+        start: this.start,
+        stop: this.stop,
+        threshold_p_max: parseInt(this.threshold, 10),
+      };
 
-    this.componentStore.showAddModal(schedule);
+      this.componentStore.showAddModal(schedule);
+    });
   }
 
   showEditModal(schedule: ISchedule) {
