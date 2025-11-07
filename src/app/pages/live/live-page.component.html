@@ -118,10 +118,6 @@
             <td><ion-text color="medium">Battery USOC:</ion-text></td>
             <td>{{ batteryCharge$ | ngrxPush }}%</td>
           </tr>
-          <tr>
-            <td><ion-text color="medium">Battery RSOC:</ion-text></td>
-            <td>{{ batteryRealCharge$ | ngrxPush }}%</td>
-          </tr>
 
           <tr>
             <td><ion-text color="medium">Backup Buffer:</ion-text></td>
@@ -135,6 +131,10 @@
           <tr *ngIf="batteryDischarging$ | ngrxPush">
             <td><ion-text color="medium">Battery empty:</ion-text></td>
             <td>{{ batteryDischargingTime$ | ngrxPush }}</td>
+          </tr>
+          <tr>
+            <td><ion-text color="medium">Battery RSOC:</ion-text></td>
+            <td>{{ batteryRealCharge$ | ngrxPush }}%</td>
           </tr>
 
           <!-- Debug prints of usable variables -->
